@@ -3,7 +3,11 @@ name: Deploy GitHub Pages
 on:
   push:
     branches:
-      - main  # 當 main 分支有 push 時自動觸發
+      - main
+
+permissions:
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -13,13 +17,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 如果有 build 步驟，例如 Vite/React，放這裡
+      #- name: Build
+      #  run: npm install && npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./  # 部署整個專案根目錄
+          path: ./   # 改成 build 產出的資料夾，如果有
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
