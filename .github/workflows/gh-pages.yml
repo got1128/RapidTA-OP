@@ -23,7 +23,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: ./   # 這裡指向專案根目錄，因為 index.html 就在根目錄
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
